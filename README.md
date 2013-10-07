@@ -2,6 +2,8 @@
 
 This bundle adds a REST API profiler/debugger to the Symfony 2 Profiler
 
+## Continuous Intigration
+
 ## Installation
 
 ### Installation by Composer
