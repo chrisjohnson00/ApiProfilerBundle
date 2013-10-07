@@ -1,6 +1,6 @@
 # ApiProfilerBundle
 
-This bundle adds an API profiler/debugger to the Symfony 2 Profiler
+This bundle adds a REST API profiler/debugger to the Symfony 2 Profiler
 
 ## Installation
 
