@@ -85,12 +85,12 @@ class APIRequestDataCollector extends DataCollector
     }
 }
 
-class APIRequest extends message
+class APIRequest extends Message
 {
 
 }
 
-class APIResponse extends message
+class APIResponse extends Message
 {
 
 }
@@ -137,7 +137,7 @@ class APIData
 
 }
 
-class message
+abstract class Message
 {
     private $headers;
     private $body;
