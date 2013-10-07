@@ -15,7 +15,7 @@ Add ApiProfilerBundle bundle as a dependency to the composer.json of your applic
     },
 
 Or on the command line with
-`composer require chrisjohnson00/api-profiler-bundle'
+`composer require chrisjohnson00/api-profiler-bundle`
 
 ## Add ApiProfilerBundle to your application kernel.
 
