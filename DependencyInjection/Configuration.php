@@ -26,16 +26,20 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->integerNode('warning_threshold')
+                ->scalarNode('warning_threshold')
+                    ->isRequired()
+                    ->cannotBeEmpty()
                     ->defaultValue(5000)
                     ->info('Changes the warning threshold time (ms).  This is used to change the toolbar to yellow when the total response time is > this value')
                     ->example("5000")
-                ->end()
-                ->integerNode('error_threshold')
+                    ->end()
+                ->scalarNode('error_threshold')
+                    ->isRequired()
+                    ->cannotBeEmpty()
                     ->defaultValue(10000)
                     ->info('Changes the error threshold time (ms).  This is used to change the toolbar to red when the total response time is > this value')
                     ->example("10000")
-                ->end()
+                    ->end()
             ->end()
         ;
 
