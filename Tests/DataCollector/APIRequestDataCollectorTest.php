@@ -30,14 +30,14 @@ class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetCount()
     {
-        $this->assertEqual(10, $this->apiRequestDataCollector1->getCount());
-        $this->assertEqual(10, $this->apiRequestDataCollector2->getCount());
+        $this->assertEquals(10, $this->apiRequestDataCollector1->getCount());
+        $this->assertEquals(10, $this->apiRequestDataCollector2->getCount());
     }
 
     public function testGetTime()
     {
-        $this->assertEqual(100000, $this->apiRequestDataCollector1->getTime());
-        $this->assertEqual(100, $this->apiRequestDataCollector2->getTime());
+        $this->assertEquals(100000, $this->apiRequestDataCollector1->getTime());
+        $this->assertEquals(100, $this->apiRequestDataCollector2->getTime());
 
     }
 
