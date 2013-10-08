@@ -27,11 +27,11 @@ class ChrisJohnson00ApiProfilerExtension extends Extension
 
         $container->setParameter(
             'chrisjohnson00_apiprofiler.your_parameter',
-            isset($$config['chrisjohnson00_apiprofiler']['warning_threshold'])?$$config['chrisjohnson00_apiprofiler']['warning_threshold']:5000
+            isset($config['chrisjohnson00_apiprofiler']['warning_threshold'])?$config['chrisjohnson00_apiprofiler']['warning_threshold']:5000
         );
         $container->setParameter(
             'chrisjohnson00_apiprofiler.your_parameter',
-            isset($$config['chrisjohnson00_apiprofiler']['error_threshold'])?$$config['chrisjohnson00_apiprofiler']['error_threshold']:10000
+            isset($config['chrisjohnson00_apiprofiler']['error_threshold'])?$config['chrisjohnson00_apiprofiler']['error_threshold']:10000
         );
     }
 }
