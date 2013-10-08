@@ -29,6 +29,7 @@ class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
             $this->apiRequestDataCollector2->attachData("http://localhost", "GET", array("User-Agent", "My fancy user agent"), "Odelay", 10, array("Date" => "Some time"), 200, "Yodelay");
         }
         $this->apiRequestDataCollector1->collect(new SymfonyRequest(), new SymfonyResponse);
+        $this->apiRequestDataCollector2->collect(new SymfonyRequest(), new SymfonyResponse);
     }
 
     public function testGetCount()
