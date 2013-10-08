@@ -11,6 +11,8 @@ namespace ChrisJohnson00\ApiProfilerBundle\Tests\DataCollector;
 
 
 use ChrisJohnson00\ApiProfilerBundle\DataCollector\APIRequestDataCollector;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,6 +28,8 @@ class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
             $this->apiRequestDataCollector1->attachData("http://localhost", "GET", array("User-Agent", "My fancy user agent"), "Odelay", 10000, array("Date" => "Some time"), 200, "Yodelay");
             $this->apiRequestDataCollector2->attachData("http://localhost", "GET", array("User-Agent", "My fancy user agent"), "Odelay", 10, array("Date" => "Some time"), 200, "Yodelay");
         }
+        $this->apiRequestDataCollector1->collect(new SymfonyRequest(), new SymfonyResponse);
+        $this->apiRequestDataCollector2->collect(new SymfonyRequest(), new SymfonyResponse);
     }
 
     public function testGetCount()
@@ -38,7 +42,6 @@ class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(100000, $this->apiRequestDataCollector1->getTime());
         $this->assertEquals(100, $this->apiRequestDataCollector2->getTime());
-
     }
 
     public function testWarning()
