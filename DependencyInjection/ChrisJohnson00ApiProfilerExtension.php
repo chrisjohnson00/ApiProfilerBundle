@@ -24,5 +24,15 @@ class ChrisJohnson00ApiProfilerExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+
+        $container->setParameter(
+            'chrisjohnson00_apiprofiler.your_parameter',
+            isset($$config['chrisjohnson00_apiprofiler']['warning_threshold'])?$$config['chrisjohnson00_apiprofiler']['warning_threshold']:5000
+        );
+        $container->setParameter(
+            'chrisjohnson00_apiprofiler.your_parameter',
+            isset($$config['chrisjohnson00_apiprofiler']['error_threshold'])?$$config['chrisjohnson00_apiprofiler']['error_threshold']:10000
+        );
     }
 }
