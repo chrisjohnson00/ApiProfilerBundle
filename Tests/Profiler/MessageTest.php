@@ -9,13 +9,13 @@
 
 namespace ChrisJohnson00\ApiProfilerBundle\Profiler\Tests;
 
-use ChrisJohnson00\ApiProfilerBundle\Profiler\APIResponse as Message;
+use ChrisJohnson00\ApiProfilerBundle\Profiler\APIResponse;
 
 class MessageTest extends \PHPUnit_Framework_TestCase
 {
 	public function testSettersAndGetters()
     {
-        $message = new Message();
+        $message = new APIResponse();
         $message->setMethod("GET");
         $this->assertEquals("GET",$message->getMethod());
         $message->setBody("BODY");
