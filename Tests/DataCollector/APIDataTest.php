@@ -45,6 +45,6 @@ class APIDataTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->request, $this->apiData->getRequest());
         $this->assertEquals($this->response, $this->apiData->getResponse());
         $this->assertEquals(100, $this->apiData->getTime());
-        $this->assertInternalType("string", $this->apiData->getId());
+        $this->assertInternalType("string", $this->apiData->getKey());
     }
 }
