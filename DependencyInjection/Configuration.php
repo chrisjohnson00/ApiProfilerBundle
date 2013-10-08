@@ -18,11 +18,26 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('chris_johnson00_api_profiler');
+        $rootNode = $treeBuilder->root('chrisjohnson00_apiprofiler');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
+
+        $rootNode
+            ->children()
+                ->numericNode('warning_threshold')
+                    ->defaultValue(5000)
+                    ->info('Changes the warning threshold time (ms).  This is used to change the toolbar to yellow when the total response time is > this value')
+                    ->example("5000")
+                ->end()
+                ->numericNode('error_threshold')
+                    ->defaultValue(10000)
+                    ->info('Changes the error threshold time (ms).  This is used to change the toolbar to red when the total response time is > this value')
+                    ->example("10000")
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

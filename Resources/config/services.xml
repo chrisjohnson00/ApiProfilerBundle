@@ -5,6 +5,8 @@
     <services>
         <service id="data_collector.api_request" class="ChrisJohnson00\ApiProfilerBundle\DataCollector\APIRequestDataCollector">
             <tag name="data_collector" template="ChrisJohnson00ApiProfilerBundle:DataCollector:apiRequest" id="api_request"/>
+            <argument>%chrisjohnson00_apiprofiler.warning_threshold%</argument>
+            <argument>%chrisjohnson00_apiprofiler.error_threshold%</argument>
         </service>
     </services>
 </container>
