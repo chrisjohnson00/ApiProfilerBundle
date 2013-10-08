@@ -7,13 +7,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace ChrisJohnson00\ApiProfilerBundle\Tests;
+namespace ChrisJohnson00\ApiProfilerBundle\Profiler\Tests;
 
 use ChrisJohnson00\ApiProfilerBundle\Profiler\APIResponse as Message;
 
-class MessageTest extends \PHPUnit_Framework_TestCase {
-
-    public function testSettersAndGetters()
+class MessageTest extends \PHPUnit_Framework_TestCase
+{
+	public function testSettersAndGetters()
     {
         $message = new Message();
         $message->setMethod("GET");
