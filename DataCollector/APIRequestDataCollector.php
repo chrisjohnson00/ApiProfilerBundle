@@ -17,7 +17,6 @@ class APIRequestDataCollector extends DataCollector
 {
     private $dataStore;
 
-
     public function __construct()
     {
         $this->dataStore = new \SplObjectStorage();
