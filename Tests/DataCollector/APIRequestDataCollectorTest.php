@@ -41,7 +41,6 @@ class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(100000, $this->apiRequestDataCollector1->getTime());
         $this->assertEquals(100, $this->apiRequestDataCollector2->getTime());
-
     }
 
     public function testWarning()
