@@ -1,0 +1,131 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% import _self as apiRequest %}
+
+{% block toolbar %}
+    <div class="sf-toolbar-block">
+        <div class="sf-toolbar-icon"><a href="{{ path('_profiler', { 'token': token, 'panel': name }) }}"> <img
+                        alt="API"
+                        src="data:image/gif;base64,R0lGODlhHAAcAMQcAE1NTTo6OnNzc/T09FNTU+/v72xsbGVlZcbGxqmpqcHBwbKyskFBQcnJyUhISNbW1q2trU5OTru7u6CgoFxcXHd3d/Hx8YWFheTk5GlpaZKSkjMzM////wAAAAAAAAAAACH5BAEAABwALAAAAAAcABwAAAXZICeO4qBoBhAEgKEpAynLRXJseK4fSTHLCIFuOBQgfqIFgcjMERa/haNJ3TigJMSySiUcRQUhtyrwcRLjcYIzuKWrBxMzo4to7hVchK47ESkWOhkQGRkaExuGQyhEEBoXOYo4D4kaQylDEQ0MlDiSnJVDKot5E3wZGA2qFKE6K0MWdxASnpaCtjksOhcahRkSEa2RuDgtOg8MkRDCtZe4kjkSDNDNOi9vYzBu2ExxZ9xNaxxh4EVmHFrlOF4yUuVXUVtvT0joYmNG9WA2cD36JCZQqGDhAgaSEAA7"
+                        height="28"
+                        width="28">
+                {% set status_color = "green" %}
+                {% if collector.warning %}
+                    {% set status_color = "yellow" %}
+                {% endif %}
+                {% if collector.error %}
+                    {% set status_color = "red" %}
+                {% endif %}
+                <span class="sf-toolbar-info-piece-additional-detail">{{ collector.getCount }} in </span>
+                <span class="sf-toolbar-status sf-toolbar-status-{{ status_color }}">{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
+            </a>
+        </div>
+        <div class="sf-toolbar-info">
+            <div class="sf-toolbar-info-piece">
+                <b>API Requests</b>
+                <span>{{ collector.getCount }}</span>
+            </div>
+            <div class="sf-toolbar-info-piece">
+                <b>Request Time</b>
+                <span>{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{# if the web profiler panel needs some specific JS or CSS files
+{% block head %}
+{% endblock %}
+#}
+{% block menu %}
+    {# the menu content, left side menu on detail view #}
+    <span class="label">
+    <span class="icon"><img
+                src="data:image/gif;base64,R0lGODlhHAAcAMQcAE1NTTo6OnNzc/T09FNTU+/v72xsbGVlZcbGxqmpqcHBwbKyskFBQcnJyUhISNbW1q2trU5OTru7u6CgoFxcXHd3d/Hx8YWFheTk5GlpaZKSkjMzM////wAAAAAAAAAAACH5BAEAABwALAAAAAAcABwAAAXZICeO4qBoBhAEgKEpAynLRXJseK4fSTHLCIFuOBQgfqIFgcjMERa/haNJ3TigJMSySiUcRQUhtyrwcRLjcYIzuKWrBxMzo4to7hVchK47ESkWOhkQGRkaExuGQyhEEBoXOYo4D4kaQylDEQ0MlDiSnJVDKot5E3wZGA2qFKE6K0MWdxASnpaCtjksOhcahRkSEa2RuDgtOg8MkRDCtZe4kjkSDNDNOi9vYzBu2ExxZ9xNaxxh4EVmHFrlOF4yUuVXUVtvT0joYmNG9WA2cD36JCZQqGDhAgaSEAA7"
+                alt=""/></span>
+    <strong>API</strong>
+    <span class="count">
+        <span>{{ collector.getCount }}</span>
+        <span>{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
+    </span>
+</span>
+{% endblock %}
+
+{% block panel %}
+    {# the panel content, show the details here #}
+    <h2>API Requests</h2>
+
+    {% if collector.getAPIData %}
+        <ul class="alt">
+            {% for data in collector.getAPIData %}
+                <li class="{{ cycle(['odd', 'even'], loop.index) }}{% if data.response.statusCode and data.response.statusCode >= 500 %} error{% elseif data.getTime >= 300 %} warning{% endif %}">
+                    {{ apiRequest.display_message(data) }}
+                </li>
+                {{ apiRequest.display_details(data,apiRequest) }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>
+            <em>No API requests made.</em>
+        </p>
+    {% endif %}
+
+    <script type="text/javascript">//<![CDATA[
+
+        function expandRequest(link) {
+            var target = link.getAttribute('data-target-id');
+
+            //if showing deets
+            if (document.getElementById('small' + target).style.display != 'none') {
+                document.getElementById('small' + target).style.display = 'none';
+                document.getElementById('plus' + target).style.display = 'inline';
+                document.getElementById('minus' + target).style.display = 'none';
+            } else {
+                document.getElementById('small' + target).style.display = 'inline';
+                document.getElementById('plus' + target).style.display = 'none';
+                document.getElementById('minus' + target).style.display = 'inline';
+            }
+            return false;
+        }
+
+        //]]></script>
+{% endblock %}
+
+{% macro display_message(dataObj) %}
+    <div data-state="collapsed" onclick="return expandRequest(this);" title="Expand"
+         data-target-id="{{ dataObj.getKey }}" style="cursor: pointer;">
+        <img id="plus{{ dataObj.getKey }}" alt="+" src="{{ asset('bundles/framework/images/blue_picto_more.gif') }}"
+             style="display: inline;">
+        <img id="minus{{ dataObj.getKey }}" alt="-" src="{{ asset('bundles/framework/images/blue_picto_less.gif') }}"
+             style="display: none;">
+        <span>{{ dataObj.request.method }} on <code>{{ dataObj.request.url }}</code> took {{ '%0.5f'|format(dataObj.response.time*1000) }}
+            ms and responded with a {{ dataObj.response.statusCode }}</span>
+    </div>
+{% endmacro %}
+
+{% macro display_details(dataObj,apiRequest) %}
+    <div id="small{{ dataObj.getKey }}" style="display: none;clear:left;">
+        <h3>Request</h3>
+        {{ apiRequest.display_detail_table(dataObj.request) }}
+        <h3>Response</h3>
+        {{ apiRequest.display_detail_table(dataObj.response) }}
+    </div>
+{% endmacro %}
+
+{% macro display_detail_table(data) %}
+    {% if data.headers %}
+        <h4>Headers</h4>
+        <table border="0" cellpadding="0" cellspacing="0">
+            {% for key, value in data.headers %}
+                <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    {% if data.body %}
+        <h4>Body</h4>
+        <code>{{ data.body }}</code>
+    {% endif %}
+{% endmacro %}

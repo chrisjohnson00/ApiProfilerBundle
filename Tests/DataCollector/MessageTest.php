@@ -7,9 +7,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace ChrisJohnson00\ApiProfilerBundle\Profiler\Tests;
+namespace ChrisJohnson00\ApiProfilerBundle\Tests\DataCollector;
 
-use ChrisJohnson00\ApiProfilerBundle\Profiler\APIResponse;
+use ChrisJohnson00\ApiProfilerBundle\DataCollector\APIResponse;
 
 class MessageTest extends \PHPUnit_Framework_TestCase
 {

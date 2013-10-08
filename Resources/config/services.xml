@@ -3,8 +3,8 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="data_collector.api_request" class="ChrisJohnson00\ApiProfilerBundle\Profiler\APIRequestDataCollector">
-            <tag name="data_collector" template="ChrisJohnson00ApiProfilerBundle:Profiler:apiRequest" id="api_request"/>
+        <service id="data_collector.api_request" class="ChrisJohnson00\ApiProfilerBundle\DataCollector\APIRequestDataCollector">
+            <tag name="data_collector" template="ChrisJohnson00ApiProfilerBundle:DataCollector:apiRequest" id="api_request"/>
         </service>
     </services>
 </container>
