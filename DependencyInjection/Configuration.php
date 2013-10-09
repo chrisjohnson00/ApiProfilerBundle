@@ -29,10 +29,12 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('warning_threshold')
                     ->info('Changes the warning threshold time (ms).  This is used to change the toolbar to yellow when the total response time is > this value')
                     ->example("5000")
+                    ->default("5000")
                     ->end()
                 ->scalarNode('error_threshold')
                     ->info('Changes the error threshold time (ms).  This is used to change the toolbar to red when the total response time is > this value')
                     ->example("10000")
+                    ->default("10000")
                     ->end()
             ->end()
         ;
