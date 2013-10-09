@@ -35,6 +35,19 @@ Or on the command line with
     }
 ```
 
+### Configuration
+
+To change the default warning & error thresholds (used for coloring in the toolbar), you can add these configs.
+Note: these configs are completely optional!
+
+    chris_johnson00_api_profiler:
+
+        # Changes the warning threshold time (ms).  This is used to change the toolbar to yellow when the total response time is > this value
+        warning_threshold:    5000 # Example: 5000
+
+        # Changes the error threshold time (ms).  This is used to change the toolbar to red when the total response time is > this value
+        error_threshold:      10000 # Example: 10000
+
 ## Usage
 
 A service will be registered by the name of `data_collector.api_request`.  To have API request information included in the profiler, you must attach the profile data using the service.

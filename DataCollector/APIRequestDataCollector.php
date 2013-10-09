@@ -16,10 +16,14 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 class APIRequestDataCollector extends DataCollector
 {
     private $dataStore;
+    private $errorThreshold;
+    private $warningThreshold;
 
-    public function __construct()
+    public function __construct($warningThreshold, $errorThreshold)
     {
-        $this->dataStore = new \SplObjectStorage();
+        $this->dataStore        = new \SplObjectStorage();
+        $this->errorThreshold   = $errorThreshold;
+        $this->warningThreshold = $warningThreshold;
     }
 
     public function collect(SymfonyRequest $request, SymfonyResponse $response, \Exception $exception = null)
@@ -57,12 +61,12 @@ class APIRequestDataCollector extends DataCollector
 
     public function warning()
     {
-        return ($this->getTime() > 5000) ? true : false;
+        return ($this->getTime() > $this->warningThreshold) ? true : false;
     }
 
     public function error()
     {
-        return ($this->getTime() > 10000) ? true : false;
+        return ($this->getTime() > $this->errorThreshold) ? true : false;
     }
 
     public function getTime()

@@ -21,8 +21,8 @@ class APIRequestDataCollectorTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->apiRequestDataCollector1 = new APIRequestDataCollector();
-        $this->apiRequestDataCollector2 = new APIRequestDataCollector();
+        $this->apiRequestDataCollector1 = new APIRequestDataCollector(5000,10000);
+        $this->apiRequestDataCollector2 = new APIRequestDataCollector(5000,10000);
         for ($i = 0; $i < 10; $i++)
         {
             $this->apiRequestDataCollector1->attachData("http://localhost", "GET", array("User-Agent", "My fancy user agent"), "Odelay", 10000, array("Date" => "Some time"), 200, "Yodelay");

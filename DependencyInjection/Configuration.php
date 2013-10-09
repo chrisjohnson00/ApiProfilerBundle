@@ -24,6 +24,21 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode
+            ->children()
+                ->scalarNode('warning_threshold')
+                    ->info('Changes the warning threshold time (ms).  This is used to change the toolbar to yellow when the total response time is > this value')
+                    ->example("5000")
+                    ->defaultValue("5000")
+                    ->end()
+                ->scalarNode('error_threshold')
+                    ->info('Changes the error threshold time (ms).  This is used to change the toolbar to red when the total response time is > this value')
+                    ->example("10000")
+                    ->defaultValue("10000")
+                    ->end()
+            ->end()
+        ;
+
         return $treeBuilder;
     }
 }
