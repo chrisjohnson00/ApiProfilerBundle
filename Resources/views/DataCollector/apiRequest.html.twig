@@ -16,7 +16,7 @@
                 {% if collector.error %}
                     {% set status_color = "red" %}
                 {% endif %}
-                <span class="sf-toolbar-info-piece-additional-detail">{{ collector.getCount }} in </span>
+                <span class="sf-toolbar-status">{{ collector.getCount }} in </span>
                 <span class="sf-toolbar-status sf-toolbar-status-{{ status_color }}">{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
             </a>
         </div>
