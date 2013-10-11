@@ -3,7 +3,7 @@
 This bundle adds a REST API profiler/debugger to the Symfony 2 Profiler
 
 ## Continuous Integration
-[![Build Status](https://travis-ci.org/chrisjohnson00/ApiProfilerBundle.png?branch=master)](https://travis-ci.org/chrisjohnson00/ApiProfilerBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/chrisjohnson00/ApiProfilerBundle/badges/quality-score.png?s=602c217293de80ff847ee4d88630f3d25e952ed6)](https://scrutinizer-ci.com/g/chrisjohnson00/ApiProfilerBundle/)
+[![Build Status](https://travis-ci.org/chrisjohnson00/ApiProfilerBundle.png?branch=master)](https://travis-ci.org/chrisjohnson00/ApiProfilerBundle) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/chrisjohnson00/ApiProfilerBundle/badges/quality-score.png?s=602c217293de80ff847ee4d88630f3d25e952ed6)](https://scrutinizer-ci.com/g/chrisjohnson00/ApiProfilerBundle/) [![Code Coverage](https://scrutinizer-ci.com/g/chrisjohnson00/ApiProfilerBundle/badges/coverage.png?s=001e2264d0f5871b5fdf26ba42056528884c0fb3)](https://scrutinizer-ci.com/g/chrisjohnson00/ApiProfilerBundle/)
 
 ## Installation
 
