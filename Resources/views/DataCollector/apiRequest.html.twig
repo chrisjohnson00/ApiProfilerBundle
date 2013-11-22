@@ -17,7 +17,7 @@
                     {% set status_color = "red" %}
                 {% endif %}
                 <span class="sf-toolbar-status">{{ collector.getCount }}</span> in
-                <span class="sf-toolbar-status sf-toolbar-status-{{ status_color }}">{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
+                <span class="sf-toolbar-status sf-toolbar-status-{{ status_color }}">{{ '%0.2f'|format(collector.getTime) }} ms</span>
             </a>
         </div>
         <div class="sf-toolbar-info">
@@ -27,7 +27,7 @@
             </div>
             <div class="sf-toolbar-info-piece">
                 <b>Request Time</b>
-                <span>{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
+                <span>{{ '%0.2f'|format(collector.getTime) }} ms</span>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
     <strong>API</strong>
     <span class="count">
         <span>{{ collector.getCount }}</span>
-        <span>{{ '%0.2f'|format(collector.getTime*1000) }} ms</span>
+        <span>{{ '%0.2f'|format(collector.getTime) }} ms</span>
     </span>
 </span>
 {% endblock %}
@@ -58,7 +58,7 @@
     {% if collector.getAPIData %}
         <ul class="alt">
             {% for data in collector.getAPIData %}
-                <li class="{{ cycle(['odd', 'even'], loop.index) }}{% if data.response.statusCode and data.response.statusCode >= 500 %} error{% elseif data.getTime >= 300 %} warning{% endif %}">
+                <li class="{{ cycle(['odd', 'even'], loop.index) }}{% if data.response.statusCode and data.response.statusCode >= 500 %} error{% endif %}">
                     {{ apiRequest.display_message(data) }}
                 </li>
                 {{ apiRequest.display_details(data,apiRequest) }}
@@ -98,7 +98,7 @@
              style="display: inline;">
         <img id="minus{{ dataObj.getKey }}" alt="-" src="{{ asset('bundles/framework/images/blue_picto_less.gif') }}"
              style="display: none;">
-        <span>{{ dataObj.request.method }} on <code>{{ dataObj.request.url }}</code> took {{ '%0.5f'|format(dataObj.response.time*1000) }}
+        <span>{{ dataObj.request.method }} on <code>{{ dataObj.request.url }}</code> took {{ '%0.5f'|format(dataObj.response.time) }}
             ms and responded with a {{ dataObj.response.statusCode }}</span>
     </div>
 {% endmacro %}

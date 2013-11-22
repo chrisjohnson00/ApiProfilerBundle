@@ -29,7 +29,9 @@ class APIRequestDataCollector extends DataCollector
     public function collect(SymfonyRequest $request, SymfonyResponse $response, \Exception $exception = null)
     {
         $this->data = array(
-            'api_request' => $this->dataStore
+            'api_request' => array('data'             => $this->dataStore,
+                                   'warningThreshold' => $this->warningThreshold,
+                                   'errorThreshold'   => $this->errorThreshold)
         );
     }
 
@@ -56,30 +58,30 @@ class APIRequestDataCollector extends DataCollector
 
     public function getAPIData()
     {
-        return $this->data['api_request'];
+        return $this->data['api_request']['data'];
     }
 
     public function warning()
     {
-        return ($this->getTime() > $this->warningThreshold) ? true : false;
+        return ($this->getTime() > $this->data['api_request']['warningThreshold']) ? true : false;
     }
 
     public function error()
     {
-        return ($this->getTime() > $this->errorThreshold) ? true : false;
+        return ($this->getTime() > $this->data['api_request']['errorThreshold']) ? true : false;
     }
 
     public function getTime()
     {
         $requestTime = 0;
-        foreach ($this->data['api_request'] as $data)
+        foreach ($this->data['api_request']['data'] as $data)
             $requestTime = $requestTime + $data->getTime();
         return $requestTime;
     }
 
     public function getCount()
     {
-        return $this->data['api_request']->count();
+        return $this->data['api_request']['data']->count();
     }
 
     public function getName()
