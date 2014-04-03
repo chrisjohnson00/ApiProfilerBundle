@@ -9,7 +9,11 @@
 
 namespace ChrisJohnson00\ApiProfilerBundle\DataCollector;
 
-
+/**
+ * Class APIResponse
+ * @package ChrisJohnson00\ApiProfilerBundle\DataCollector
+ * @codeCoverageIgnore
+ */
 class APIResponse extends Message
 {
 
